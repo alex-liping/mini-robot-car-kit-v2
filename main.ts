@@ -1,6 +1,6 @@
 function doprava_mirne () {
-    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 30)
-    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 70)
+    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 50)
+    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 100)
     range = strip.range(4, 1)
     range.showColor(neopixel.colors(NeoPixelColors.Orange))
 }
@@ -15,8 +15,8 @@ function doprava () {
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
 }
 function doleva_mirne () {
-    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 30)
-    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 70)
+    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 50)
+    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 100)
     range = strip.range(13, 1)
     range.showColor(neopixel.colors(NeoPixelColors.Orange))
 }
@@ -31,14 +31,24 @@ function couvni () {
     kBit.carStop()
     basic.pause(500)
     kBit.run(KBitDir.RunBack, 20)
-    basic.pause(1000)
+    basic.pause(2000)
+    strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
+    strip.showColor(neopixel.colors(NeoPixelColors.Red))
+    basic.pause(100)
     kBit.carStop()
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 10000; index++) {
-        if (kBit.ultra() >= 10 && kBit.ultra() <= 30) {
+        if (kBit.ultra() >= 30 && kBit.ultra() <= 50) {
+            strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
+            range = strip.range(1, 6)
+            strip.showColor(neopixel.colors(NeoPixelColors.Red))
+            range = strip.range(12, 18)
+            strip.showColor(neopixel.colors(NeoPixelColors.Red))
+            basic.pause(200)
             kBit.run(KBitDir.RunForward, 20)
+            strip.showColor(neopixel.colors(NeoPixelColors.Black))
             range = strip.range(6, 6)
             range.showColor(neopixel.colors(NeoPixelColors.Blue))
             if (kBit.obstacle(KBitMotorObs.LeftSide) == 0) {
@@ -49,8 +59,8 @@ input.onButtonPressed(Button.B, function () {
                 strip.showColor(neopixel.colors(NeoPixelColors.Black))
                 doleva_mirne()
             }
-        } else if (kBit.ultra() >= 31) {
-            kBit.run(KBitDir.RunForward, 60)
+        } else if (kBit.ultra() >= 51) {
+            kBit.run(KBitDir.RunForward, 90)
             range = strip.range(6, 6)
             range.showColor(neopixel.colors(NeoPixelColors.Blue))
             if (kBit.obstacle(KBitMotorObs.LeftSide) == 0) {
@@ -63,9 +73,12 @@ input.onButtonPressed(Button.B, function () {
             }
         } else {
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
+            strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
+            strip.showColor(neopixel.colors(NeoPixelColors.Red))
+            basic.pause(200)
+            strip.showColor(neopixel.colors(NeoPixelColors.Black))
             couvni()
-            nah_cislo += randint(0, 1)
-            serial.writeValue("nah_cislo", nah_cislo)
+            nah_cislo = randint(0, 1)
             basic.pause(500)
             if (nah_cislo == 0) {
                 if (kBit.obstacle(KBitMotorObs.LeftSide) == 1) {
@@ -75,6 +88,16 @@ input.onButtonPressed(Button.B, function () {
                     if (kBit.obstacle(KBitMotorObs.RightSide) == 1) {
                         strip.showColor(neopixel.colors(NeoPixelColors.Black))
                         doprava()
+                    }
+                }
+            } else {
+                if (kBit.obstacle(KBitMotorObs.RightSide) == 1) {
+                    strip.showColor(neopixel.colors(NeoPixelColors.Black))
+                    doprava()
+                } else {
+                    if (kBit.obstacle(KBitMotorObs.LeftSide) == 1) {
+                        strip.showColor(neopixel.colors(NeoPixelColors.Black))
+                        doleva()
                     }
                 }
             }
@@ -94,6 +117,7 @@ function doleva () {
 let nah_cislo = 0
 let range: neopixel.Strip = null
 let strip: neopixel.Strip = null
+music.play(music.builtinPlayableSoundEffect(soundExpression.twinkle), music.PlaybackMode.InBackground)
 strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
 irRemote.connectInfrared(DigitalPin.P16)
 strip.showColor(neopixel.colors(NeoPixelColors.Green))
