@@ -30,7 +30,7 @@ function couvni () {
     range.showColor(neopixel.colors(NeoPixelColors.White))
     kBit.carStop()
     basic.pause(500)
-    kBit.run(KBitDir.RunBack, 20)
+    kBit.run(KBitDir.RunBack, 30)
     basic.pause(2000)
     strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
@@ -40,14 +40,9 @@ function couvni () {
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 10000; index++) {
-        if (kBit.ultra() >= 30 && kBit.ultra() <= 50) {
-            strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
-            range = strip.range(1, 6)
-            strip.showColor(neopixel.colors(NeoPixelColors.Red))
-            range = strip.range(12, 18)
-            strip.showColor(neopixel.colors(NeoPixelColors.Red))
-            basic.pause(200)
-            kBit.run(KBitDir.RunForward, 20)
+        if (kBit.ultra() >= 20 && kBit.ultra() <= 50) {
+            kBit.carStop()
+            kBit.run(KBitDir.RunForward, 30)
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
             range = strip.range(6, 6)
             range.showColor(neopixel.colors(NeoPixelColors.Blue))
@@ -60,6 +55,7 @@ input.onButtonPressed(Button.B, function () {
                 doleva_mirne()
             }
         } else if (kBit.ultra() >= 51) {
+            kBit.carStop()
             kBit.run(KBitDir.RunForward, 90)
             range = strip.range(6, 6)
             range.showColor(neopixel.colors(NeoPixelColors.Blue))
@@ -77,6 +73,7 @@ input.onButtonPressed(Button.B, function () {
             strip.showColor(neopixel.colors(NeoPixelColors.Red))
             basic.pause(200)
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
+            kBit.carStop()
             couvni()
             nah_cislo = randint(0, 1)
             basic.pause(500)
