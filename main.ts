@@ -16,13 +16,19 @@ function couvni () {
     kBit.carStop()
 }
 input.onButtonPressed(Button.B, function () {
-    for (let index = 0; index < 100000; index++) {
+    for (let index = 0; index < 1000; index++) {
         if (kBit.ultra() > 8) {
-            kBit.run(KBitDir.RunForward, 30)
+            kBit.run(KBitDir.RunForward, 50)
         } else {
             couvni()
+            if (kBit.obstacle(KBitMotorObs.LeftSide) == 0) {
+                doleva()
+            } else {
+                if (kBit.obstacle(KBitMotorObs.RightSide) == 0) {
+                    doleva()
+                }
+            }
         }
-        basic.pause(500)
     }
 })
 function doleva () {
