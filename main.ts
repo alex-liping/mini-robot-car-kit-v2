@@ -25,8 +25,16 @@ function couvni () {
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 1000; index++) {
-        if (kBit.ultra() > 10) {
-            kBit.run(KBitDir.RunForward, 50)
+        if (kBit.ultra() >= 10 && kBit.ultra() <= 30) {
+            kBit.run(KBitDir.RunForward, 20)
+            if (kBit.obstacle(KBitMotorObs.LeftSide) == 0) {
+                doprava_mirne()
+            }
+            if (kBit.obstacle(KBitMotorObs.RightSide) == 0) {
+                doleva_mirne()
+            }
+        } else if (kBit.ultra() >= 31) {
+            kBit.run(KBitDir.RunForward, 60)
             if (kBit.obstacle(KBitMotorObs.LeftSide) == 0) {
                 doprava_mirne()
             }
