@@ -1,6 +1,6 @@
 function doprava_mirne () {
-    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 40)
-    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 60)
+    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 60)
+    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 90)
     basic.pause(1000)
     kBit.run(KBitDir.RunForward, 50)
 }
@@ -12,13 +12,20 @@ function doprava () {
     kBit.motorStop(KBitMotorObs.RightSide)
 }
 function doleva_mirne () {
-    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 40)
-    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 60)
+    kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 60)
+    kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 90)
     basic.pause(1000)
     kBit.run(KBitDir.RunForward, 50)
 }
 function front_stop () {
-    if (kBit.ultra() <= 10) {
+    if (true) {
+        kBit.run(KBitDir.RunForward, 20)
+    } else {
+        if (kBit.ultra() > 31) {
+            kBit.run(KBitDir.RunForward, 80)
+        }
+    }
+    if (kBit.ultra() <= 15) {
         kBit.carStop()
         couvni()
     }
@@ -35,8 +42,11 @@ function couvni () {
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 100000; index++) {
-        if (kBit.ultra() > 10) {
-            kBit.run(KBitDir.RunForward, 50)
+        if (kBit.ultra() >= 16 && kBit.ultra() <= 30) {
+            kBit.run(KBitDir.RunForward, 20)
+            if (kBit.ultra() > 30) {
+                kBit.run(KBitDir.RunForward, 80)
+            }
             if (kBit.obstacle(KBitMotorObs.LeftSide) == 0) {
                 doprava_mirne()
             }
