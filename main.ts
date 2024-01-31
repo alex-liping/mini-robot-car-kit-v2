@@ -2,6 +2,7 @@ function doprava_mirne () {
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
     kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 50)
     kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 100)
+    basic.pause(500)
     range = strip.range(4, 1)
     range.showColor(neopixel.colors(NeoPixelColors.Orange))
 }
@@ -20,6 +21,7 @@ function doleva_mirne () {
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
     kBit.motor(KBitMotorObs.LeftSide, KBitMotorDir.Forward, 50)
     kBit.motor(KBitMotorObs.RightSide, KBitMotorDir.Forward, 100)
+    basic.pause(500)
     range = strip.range(13, 1)
     range.showColor(neopixel.colors(NeoPixelColors.Orange))
 }
@@ -43,7 +45,7 @@ function couvni () {
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 10000; index++) {
-        if (kBit.ultra() >= 12 && kBit.ultra() <= 33) {
+        if (kBit.ultra() >= 13 && kBit.ultra() <= 38) {
             kBit.carStop()
             kBit.run(KBitDir.RunForward, 30)
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
@@ -55,7 +57,7 @@ input.onButtonPressed(Button.B, function () {
             if (kBit.obstacle(KBitMotorObs.RightSide) == 0) {
                 doleva_mirne()
             }
-        } else if (kBit.ultra() >= 34) {
+        } else if (kBit.ultra() >= 39) {
             kBit.carStop()
             kBit.run(KBitDir.RunForward, 90)
             range = strip.range(6, 6)
