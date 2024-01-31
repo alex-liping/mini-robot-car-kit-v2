@@ -133,7 +133,7 @@ basic.showLeds(`
     . . . . .
     . # # # .
     `)
-basic.pause(501)
+basic.pause(500)
 basic.forever(function () {
 	
 })
