@@ -36,7 +36,7 @@ function couvni () {
     kBit.run(KBitDir.RunBack, 30)
     basic.pause(2000)
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
-    music.play(music.createSoundExpression(WaveShape.Sawtooth, 3272, 3155, 255, 255, 500, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    music.play(music.createSoundExpression(WaveShape.Square, 3959, 715, 255, 255, 200, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
     basic.pause(100)
     kBit.carStop()
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
@@ -69,7 +69,7 @@ input.onButtonPressed(Button.B, function () {
         } else {
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
             strip.showColor(neopixel.colors(NeoPixelColors.Red))
-            music.play(music.createSoundExpression(WaveShape.Sawtooth, 3272, 3155, 255, 255, 500, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+            music.play(music.createSoundExpression(WaveShape.Square, 3959, 715, 255, 255, 200, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
             basic.pause(200)
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
             kBit.carStop()
