@@ -29,7 +29,7 @@ input.onButtonPressed(Button.A, function () {
 function couvni () {
     range = strip.range(18, 1)
     range.showColor(neopixel.colors(NeoPixelColors.White))
-    range = strip.range(1, 1)
+    range = strip.range(0, 1)
     range.showColor(neopixel.colors(NeoPixelColors.White))
     basic.pause(500)
     kBit.run(KBitDir.RunBack, 30)
@@ -41,7 +41,7 @@ function couvni () {
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 10000; index++) {
-        if (kBit.ultra() >= 15 && kBit.ultra() <= 40) {
+        if (kBit.ultra() >= 11 && kBit.ultra() <= 35) {
             kBit.carStop()
             kBit.run(KBitDir.RunForward, 30)
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
@@ -53,7 +53,7 @@ input.onButtonPressed(Button.B, function () {
             if (kBit.obstacle(KBitMotorObs.RightSide) == 0) {
                 doleva_mirne()
             }
-        } else if (kBit.ultra() >= 51) {
+        } else if (kBit.ultra() >= 36) {
             kBit.carStop()
             kBit.run(KBitDir.RunForward, 90)
             range = strip.range(6, 6)
