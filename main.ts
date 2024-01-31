@@ -25,9 +25,6 @@ function doleva_mirne () {
     range = strip.range(13, 1)
     range.showColor(neopixel.colors(NeoPixelColors.Orange))
 }
-input.onButtonPressed(Button.A, function () {
-    kBit.carStop()
-})
 function couvni () {
     range = strip.range(18, 1)
     range.showColor(neopixel.colors(NeoPixelColors.White))
@@ -134,6 +131,3 @@ basic.showLeds(`
     . # # # .
     `)
 basic.pause(500)
-basic.forever(function () {
-	
-})
