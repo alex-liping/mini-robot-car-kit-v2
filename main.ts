@@ -32,6 +32,7 @@ function couvni () {
     range = strip.range(0, 1)
     range.showColor(neopixel.colors(NeoPixelColors.White))
     basic.pause(500)
+    music.play(music.builtinPlayableSoundEffect(soundExpression.spring), music.PlaybackMode.InBackground)
     kBit.run(KBitDir.RunBack, 30)
     basic.pause(2000)
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
@@ -41,7 +42,7 @@ function couvni () {
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 10000; index++) {
-        if (kBit.ultra() >= 11 && kBit.ultra() <= 35) {
+        if (kBit.ultra() >= 12 && kBit.ultra() <= 33) {
             kBit.carStop()
             kBit.run(KBitDir.RunForward, 30)
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
@@ -53,7 +54,7 @@ input.onButtonPressed(Button.B, function () {
             if (kBit.obstacle(KBitMotorObs.RightSide) == 0) {
                 doleva_mirne()
             }
-        } else if (kBit.ultra() >= 36) {
+        } else if (kBit.ultra() >= 34) {
             kBit.carStop()
             kBit.run(KBitDir.RunForward, 90)
             range = strip.range(6, 6)
